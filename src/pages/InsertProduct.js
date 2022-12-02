@@ -45,7 +45,10 @@ const InsertProduct = () => {
     }
 
     return(
-        <div style={{width: '50%', margin: 'auto'}}>
+
+       <>
+            <h1 className="h2 text-center mt-4">បញ្ចូលទិន្នន័យទំនិញ</h1>
+             <div style={{width: '50%', margin: 'auto', marginTop: 30}}>
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <input 
@@ -106,6 +109,7 @@ const InsertProduct = () => {
             </div>
 
         </div>
+       </>
     )
 }
 
