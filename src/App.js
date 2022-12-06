@@ -12,7 +12,7 @@ import InsertProduct from './pages/InsertProduct';
 
 function App() {
   return (
-    <div className='container-fluid bg-light p-0'>
+    <div className='bg-light'>
       <Menu />
       <Routes>
         <Route path='/' element={<Home />} />

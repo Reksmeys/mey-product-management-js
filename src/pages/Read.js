@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import Menu from "../components/Menu"
 import { fetchProduct } from "../services/actions/productsActions"
 
 const Read = () => {
@@ -18,7 +17,9 @@ const Read = () => {
     useEffect(() => {
         fetchProduct(id)
         .then(res => res.json())
-        .then(res => setProduct(res))
+        .then(res => {
+            setProduct(res)
+        })
     })
 
     const navigation = useNavigate()

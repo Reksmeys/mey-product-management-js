@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import CreateProduct from "../components/CreateProduct"
-import { createProduct, fetchCategories } from "../services/actions/productsActions"
+import { createProduct, fetchCategories, uploadFile } from "../services/actions/productsActions"
+import './../utils/styles/Default.css'
 
 const InsertProduct = () => {
     const navigation = useNavigate()
@@ -33,6 +34,22 @@ const InsertProduct = () => {
         })
 
         console.log(product);
+    }
+
+    const onChangeFileHandler = (e) => {
+        console.log(e.target.files[0].name);
+
+        const formData = new FormData()
+        formData.append("file", e.target.files[0], e.target.files[0].name)
+
+        // upload to api
+
+        uploadFile(formData)
+        .then(res => {
+            console.log(res.data);
+            product.images = [res.data.location]
+        })
+
     }
 
     const submitProduct = () => {
@@ -99,13 +116,19 @@ const InsertProduct = () => {
                 ></textarea>
             </div>
 
+            {/* upload file */}
+
+            <div>
+                <input type="file" onChange={onChangeFileHandler} />
+            </div>
+
             <div class="d-grid gap-2 col-12 mx-auto">
             <button 
                 class="btn btn-primary" 
                 type="button"
                 onClick={submitProduct}
             >Create Product</button>
-            {/* <button class="btn btn-primary" type="button">Button</button> */}
+            
             </div>
 
         </div>

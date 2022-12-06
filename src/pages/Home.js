@@ -10,13 +10,15 @@ const Home = () => {
 
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
+    
     useEffect(() => {
         fetchProducts()
         .then(res => res.json())
         .then(res => {
             setLoading(false)
             setProducts(res)
-        })
+          }
+        )
     }, [])
     return(
         <div className="container mt-5">

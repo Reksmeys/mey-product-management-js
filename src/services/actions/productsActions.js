@@ -1,3 +1,4 @@
+import axios from "axios"
 import { BASE_URL } from "../constants/API"
 
 export const fetchProducts = async () => {
@@ -23,5 +24,17 @@ export const createProduct = async (product) => {
 
 export const fetchCategories = async () => {
     const response = await fetch(`${BASE_URL}categories/`)
+    return response
+}
+
+export const uploadFile = async (image) => {
+    const response = await axios(`${BASE_URL}files/upload`, {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "multipart/form-data"
+        },
+        data: image
+    })
     return response
 }
