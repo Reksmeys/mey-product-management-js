@@ -12,7 +12,7 @@ export const fetchProduct = async (id) => {
 }
 
 export const createProduct = async (product) => {
-    const response = await fetch(`${BASE_URL}products`, {
+    const response = await fetch(`${BASE_URL}products/`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

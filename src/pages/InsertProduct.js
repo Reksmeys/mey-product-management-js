@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CreateProduct from "../components/CreateProduct";
 import {
   createProduct,
   fetchCategories,
@@ -40,28 +39,32 @@ const InsertProduct = () => {
 
     console.log(product);
   };
+  
+  
 
   const onChangeFileHandler = (e) => {
     console.log(e.target.files[0].name);
     setSource(e.target.files[0]);
-
-    const formData = new FormData();
-    formData.append("file", e.target.files[0], e.target.files[0].name);
-
-    // upload to api
-    uploadFile(formData).then((res) => {
-      console.log(res.data);
-      product.images = [res.data.location];
-    });
   };
 
   const submitProduct = () => {
-    createProduct(product)
+    // upload to api
+    const formData = new FormData();
+    formData.append("file", source, source.name);
+    uploadFile(formData).then((res) => {
+      console.log(res.data);
+      product.images = [res.data.location];
+      console.log('product', product);
+      createProduct(product)
       .then((res) => {
         setMsg("Insert Sucess");
         alert("Insert Sucess");
+        res.json()
+        console.log(res.json());
       })
       .then((response) => navigation("/"));
+    });
+    
   };
 
   return (
